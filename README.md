@@ -20,7 +20,7 @@ Este proyecto nace de la intersección entre **10+ años de experiencia en cienc
 
 ## 🛠️ Stack Tecnológico
 
-- **Lenguaje:** Python 3.10+
+- **Lenguaje:** Python 3.12.3
 - **Framework:** FastAPI
 - **Servidor:** Uvicorn
 
@@ -47,6 +47,6 @@ Este proyecto nace de la intersección entre **10+ años de experiencia en cienc
 
 ---
 
-** ⭐ Desarrollado por: ** [David Valadés Navarro](https://github.com/davidValades) - Backend-focused Developer | Cybersecurity Learner
+_⭐ Desarrollado por: [David Valadés Navarro](https://github.com/davidValades) - Backend-focused Developer | Cybersecurity Learner_
 
 ---
