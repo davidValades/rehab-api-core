@@ -72,14 +72,12 @@ Este proyecto nace de la intersección entre **10+ años de experiencia en cienc
 
 ## 📁 Estructura del Proyecto
 
-    ```
     rehab-api-core/
     ├── db/          # Configuración y conexión a Base de Datos
     ├── models/      # Modelos de tablas (SQLAlchemy)
     ├── schemas/     # Modelos de validación de datos (Pydantic)
     ├── main.py      # Punto de entrada de la aplicación
     └── .env         # Variables de entorno (no trackeado por Git)
-    ```
 
 ---
 
