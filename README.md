@@ -36,14 +36,22 @@ Este proyecto nace de la intersección entre **10+ años de experiencia en cienc
    ```
 
 2. **Crea y activa el entorno virtual**
+
+   ```bash
    python3 -m venv venv
    source venv/bin/activate
+   ```
 
 3. **Instala las dependencias**
-   pip install -r requirements.txt
+
+   ```bash
+    pip install -r requirements.txt
+   ```
 
 4. **Ejecuta el servidor**
+   ```bash
    uvicorn main:app --reload
+   ```
 
 ---
 
