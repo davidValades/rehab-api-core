@@ -1,22 +1,24 @@
 from fastapi import FastAPI
-from schemas.patient import Patient
+from schemas.patient import Patient # Este es el de Pydantic (esquema)
+from db.database import engine, Base
+from models.patient import PatientModel # Este es el de SQLAlchemy (modelo)
+
+# Crear las tablas
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
-    title="rehabGuard API",
-    description="API segura para la gestion de historiales de rehabilitacion",
-    version="0.0.1",
+    title="RehabGuard API",
+    description="API segura para la gestión de historiales de rehabilitación",
+    version="1.0.0"
 )
 
-# Endpoint de bienvenida
 @app.get("/")
 def read_root():
-    return {"message": "Bienvenido a la API de rehabGuard"}
+    return {"message": "Bienvenido a la API de RehabGuard"}
 
-# Endpoint para crear un nuevo paciente (metodo POST: para enviar informacion nueva)
-@app.post("/api/v1/patients/")
+@app.post("/api/v1/patients")
 def create_patient(patient_data: Patient):
-    # Aqui se procesaria la informacion del paciente y se guardaria en la base de datos
     return {
-        "message": "Paciente creado exitosamente",
-        "patient": patient_data
+        "message": "Paciente registrado con éxito",
+        "data": patient_data
     }
