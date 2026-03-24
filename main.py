@@ -1,24 +1,33 @@
+# rehab-api-core/main.py
 from fastapi import FastAPI
-from schemas.patient import Patient # Este es el de Pydantic (esquema)
 from db.database import engine, Base
-from models.patient import PatientModel # Este es el de SQLAlchemy (modelo)
 
-# Crear las tablas
+# 1. ⚠️ IMPORTANTE: Importar TODOS los modelos antes de create_all
+# Si no hacemos esto, SQLAlchemy no sabrá que existen y no creará las tablas en MySQL
+from models.clinic import ClinicModel
+from models.user import UserModel
+from models.patient import PatientProfileModel
+
+# 2. Importamos nuestros Routers (las rutas separadas en carpetas)
+from routers import clinic
+
+# 3. Crear todas las tablas en la Base de Datos
 Base.metadata.create_all(bind=engine)
 
+# 4. Inicializar FastAPI con la nueva visión SaaS
 app = FastAPI(
-    title="RehabGuard API",
-    description="API segura para la gestión de historiales de rehabilitación",
-    version="1.0.0"
+    title="RehabGuard API | B2B SaaS",
+    description="Motor Backend seguro para la gestión Multi-Tenant de clínicas de rehabilitación.",
+    version="2.0.0"
 )
 
-@app.get("/")
-def read_root():
-    return {"message": "Bienvenido a la API de RehabGuard"}
+# 5. Conectar los routers a la aplicación principal
+app.include_router(clinic.router)
 
-@app.post("/api/v1/patients")
-def create_patient(patient_data: Patient):
+# 6. Endpoint de salud (Health Check)
+@app.get("/", tags=["Health"])
+def read_root():
     return {
-        "message": "Paciente registrado con éxito",
-        "data": patient_data
+        "status": "online",
+        "message": "Bienvenido a RehabGuard API. Sistema Multi-Tenant activado. 🚀"
     }
