@@ -1,8 +1,8 @@
+# rehab-api-core/db/database.py
 import os
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, declarative_base
 
 # Cargar variables de entorno desde el archivo .env
 load_dotenv()
@@ -19,16 +19,13 @@ URL_BASE_DATOS = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{
 # Crear el motor de la base de datos
 engine = create_engine(URL_BASE_DATOS)
 
-# Crear una clase base para los modelos de la base de datos
+# Crear la Clase Base ÚNICA para toda la aplicación
 Base = declarative_base()
 
 # Creador de sesiones
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Clase Base para modelos
-Base = declarative_base()
-
-# depencencias para inyectar la sesion a los endpoints de la API
+# Dependencia para inyectar la sesión a los endpoints de la API
 def get_db():
     db = SessionLocal()
     try:

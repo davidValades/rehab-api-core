@@ -1,15 +1,20 @@
-from sqlalchemy import Column, Integer, String, Boolean
-from db.database import Base
+# rehab-api-core/models/patient.py
+from sqlalchemy import Column, Integer, String, ForeignKey, Text
+from sqlalchemy.orm import relationship
 
-# Clase que representa la tabla "patients" en la base de datos
-class PatientModel(Base):
-    # nombre de la tabla en la base de datos
-    __tablename__ = "patients"
+from db.base_class import BaseModel
 
-    # Definimos las columnas
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String(100), nullable=False)
+class PatientProfileModel(BaseModel):
+    __tablename__ = "patient_profiles"
+
+    # Conectamos este perfil clínico con la cuenta de usuario (login) y la clínica
+    user_id = Column(String(36), ForeignKey("users.id"), nullable=False, unique=True)
+    clinic_id = Column(String(36), ForeignKey("clinics.id"), nullable=False)
+
+    # Tus campos clínicos
     age = Column(Integer, nullable=False)
     injury = Column(String(255), nullable=False)
-    is_active = Column(Boolean, default=True)
-    
+    medical_history = Column(Text, nullable=True) # Campo amplio para el historial
+
+    # Relaciones
+    user = relationship("UserModel", back_populates="patient_profile")
