@@ -104,6 +104,7 @@ rehab-api-core/
 ├── services/        # Lógica de negocio pura (separada de las rutas)
 ├── main.py          # Punto de entrada de la aplicación FastAPI
 └── .env             # Variables de entorno (ignorado en Git)
+```
 
 ---
 
