@@ -29,7 +29,6 @@ El sistema ha sido diseñado desde cero pensando en la escalabilidad comercial y
 A continuación, se detalla el modelo de datos relacional que soporta la lógica de negocio, incluyendo la gestión de bonos transaccionales y la dosificación de ejercicios (N:M).
 
 ![Diagrama de Base de Datos](./assets/diagrama-bd.png) 
-*(Nota: Asegúrate de guardar el .png de dbdiagram.io en una carpeta llamada 'assets' dentro de tu repositorio)*
 
 ---
 
