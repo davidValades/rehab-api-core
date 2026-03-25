@@ -2,10 +2,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
-
-# Importamos nuestra conexión a la base de datos
 from db.database import get_db
-# Importamos el Modelo (SQLAlchemy) y el Esquema (Pydantic)
 from models.clinic import ClinicModel
 from schemas.clinic import ClinicCreate, ClinicResponse
 
