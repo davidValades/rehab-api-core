@@ -83,7 +83,19 @@ A continuación, se detalla el modelo de datos relacional que soporta la lógica
     SECRET_KEY=tu_clave_secreta_jwt
     ```
 
+<<<<<<< Updated upstream
 5.  **Ejecuta el servidor:**
+=======
+    ```bash
+    DB_USER=tu_usuario
+    DB_PASSWORD=tu_contraseña
+    DB_HOST=localhost_o_ip
+    DB_PORT=3306
+    DB_NAME=rehab_db
+    ```
+
+5.  **Ejecuta el servidor**
+>>>>>>> Stashed changes
     ```bash
     uvicorn main:app --reload
     ```
