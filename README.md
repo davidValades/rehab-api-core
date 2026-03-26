@@ -49,7 +49,7 @@ A continuación, se detalla el modelo de datos relacional que soporta la lógica
 - **Base de Datos:** MySQL 8.0+
 - **ORM:** SQLAlchemy
 - **Validación:** Pydantic
-- **Seguridad:** PyMySQL + Cryptography + JWT (JSON Web Tokens)
+- **Seguridad:** Passlib (Bcrypt) + Cryptography + JWT (JSON Web Tokens)
 
 ---
 
