@@ -15,12 +15,12 @@ Este proyecto nace de la intersección entre **10+ años de experiencia profesio
 
 El sistema ha sido diseñado desde cero pensando en la escalabilidad comercial y el cumplimiento de normativas de protección de datos médicos (GDPR/LOPD):
 
-* 🏢 **Arquitectura Multi-Tenant:** Aislamiento de datos a nivel de base de datos (`clinic_id`). Permite que múltiples clínicas utilicen el SaaS simultáneamente sin riesgo de fuga de datos entre inquilinos.
-* 🎨 **White-Labeling (Marca Blanca):** Relaciones 1:1 en la base de datos para inyectar dinámicamente configuraciones de interfaz (logos, colores corporativos) según la clínica que acceda.
-* 🛡️ **Seguridad por Diseño (Security by Design):** * Uso de **UUIDs** como claves primarias para prevenir ataques de enumeración (IDOR).
-  * Implementación de **Soft Deletes** (`deleted_at`) en todas las tablas críticas para cumplir con las políticas de retención de datos médicos sin romper la integridad referencial.
-* 🎛️ **Control de Acceso (RBAC):** Sistema de roles granulares (SuperAdmin, Clinic Admin, Physio, Receptionist, Patient) gestionado mediante tokens JWT para proteger endpoints sensibles.
-* ⚡ **Lógica Event-Driven (Prevención de Riesgos):** El sistema bloquea automáticamente las rutinas de ejercicios y alerta al profesional si un paciente registra un nivel de dolor severo (Escala EVA) en sus logs de entrenamiento.
+- 🏢 **Arquitectura Multi-Tenant:** Aislamiento de datos a nivel de base de datos (`clinic_id`). Permite que múltiples clínicas utilicen el SaaS simultáneamente sin riesgo de fuga de datos entre inquilinos.
+- 🎨 **White-Labeling (Marca Blanca):** Relaciones 1:1 en la base de datos para inyectar dinámicamente configuraciones de interfaz (logos, colores corporativos) según la clínica que acceda.
+- 🛡️ **Seguridad por Diseño (Security by Design):** \* Uso de **UUIDs** como claves primarias para prevenir ataques de enumeración (IDOR).
+  - Implementación de **Soft Deletes** (`deleted_at`) en todas las tablas críticas para cumplir con las políticas de retención de datos médicos sin romper la integridad referencial.
+- 🎛️ **Control de Acceso (RBAC):** Sistema de roles granulares (SuperAdmin, Clinic Admin, Physio, Receptionist, Patient) gestionado mediante tokens JWT para proteger endpoints sensibles.
+- ⚡ **Lógica Event-Driven (Prevención de Riesgos):** El sistema bloquea automáticamente las rutinas de ejercicios y alerta al profesional si un paciente registra un nivel de dolor severo (Escala EVA) en sus logs de entrenamiento.
 
 ---
 
@@ -28,7 +28,7 @@ El sistema ha sido diseñado desde cero pensando en la escalabilidad comercial y
 
 A continuación, se detalla el modelo de datos relacional que soporta la lógica de negocio, incluyendo la gestión de bonos transaccionales y la dosificación de ejercicios (N:M).
 
-![Diagrama de Base de Datos](./assets/diagrama-bd.png) 
+![Diagrama de Base de Datos](./assets/diagrama-bd.png)
 
 ---
 
@@ -56,24 +56,28 @@ A continuación, se detalla el modelo de datos relacional que soporta la lógica
 ## 💻 Instalación y Uso Local
 
 1.  **Clona el repositorio:**
+
     ```bash
     git clone [https://github.com/davidvalades/rehab-api-core.git](https://github.com/davidvalades/rehab-api-core.git)
     cd rehab-api-core
     ```
 
 2.  **Crea y activa el entorno virtual:**
+
     ```bash
     python3 -m venv venv
     source venv/bin/activate  # En Windows usa: venv\Scripts\activate
     ```
 
 3.  **Instala las dependencias:**
+
     ```bash
     pip install -r requirements.txt
     ```
 
 4.  **Configuración de Variables de Entorno:**
     Crea un archivo `.env` en la raíz del proyecto basándote en el archivo de ejemplo:
+
     ```env
     DB_USER=tu_usuario
     DB_PASSWORD=tu_contraseña
@@ -83,23 +87,11 @@ A continuación, se detalla el modelo de datos relacional que soporta la lógica
     SECRET_KEY=tu_clave_secreta_jwt
     ```
 
-<<<<<<< Updated upstream
 5.  **Ejecuta el servidor:**
-=======
-    ```bash
-    DB_USER=tu_usuario
-    DB_PASSWORD=tu_contraseña
-    DB_HOST=localhost_o_ip
-    DB_PORT=3306
-    DB_NAME=rehab_db
-    ```
-
-5.  **Ejecuta el servidor**
->>>>>>> Stashed changes
     ```bash
     uvicorn main:app --reload
     ```
-    *La documentación interactiva estará disponible en `http://localhost:8000/docs`*
+    _La documentación interactiva estará disponible en `http://localhost:8000/docs`_
 
 ---
 
