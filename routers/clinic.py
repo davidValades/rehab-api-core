@@ -1,5 +1,5 @@
 # rehab-api-core/routers/clinic.py
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from typing import List
 from db.database import get_db
@@ -18,9 +18,14 @@ def create_clinic(clinic_in: ClinicCreate, db: Session = Depends(get_db)):
     """
     Crea una nueva clínica en el sistema SaaS.
     """
+    clinica_existe = db.query(ClinicModel).filter(ClinicModel.email == clinic_in.email).first()
+    if clinica_existe:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Ya existe una clínica con ese correo.")    
+    
     # 1. Transformamos el dato validado de Pydantic al Modelo de SQLAlchemy
     new_clinic = ClinicModel(
         name=clinic_in.name,
+        email=clinic_in.email,
         subscription_tier=clinic_in.subscription_tier,
         is_active=clinic_in.is_active
     )

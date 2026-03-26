@@ -8,7 +8,8 @@ from uuid import UUID
 class ClinicBase(BaseModel):
     name: str = Field(..., min_length=2, max_length=100, description="Nombre de la clínica")
     email: str = Field(..., description="Correo de contacto de la clínica")
-
+    subscription_tier: str = Field(default="basic", description="Nivel de suscripción: basic, pro, premium")
+    is_active: bool = Field(default=True, description="Indica si la clínica está activa")
 
 class ClinicCreate(ClinicBase):
     pass 

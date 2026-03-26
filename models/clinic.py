@@ -10,6 +10,7 @@ class ClinicModel(BaseModel):
 
     # No necesitamos escribir el 'id' ni 'created_at', ¡lo hereda de BaseModel!
     name = Column(String(100), nullable=False)
+    email = Column(String(255), nullable=False, unique=True)
     subscription_tier = Column(String(50), default="basic")
     is_active = Column(Boolean, default=True)
 
