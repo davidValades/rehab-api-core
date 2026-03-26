@@ -8,7 +8,7 @@ from models.user import UserModel
 from models.patient import PatientProfileModel
 
 # 2. Importamos nuestros Routers
-from routers import clinic, patient
+from routers import clinic, patient, user
 
 # 3. Crear todas las tablas en la Base de Datos
 Base.metadata.create_all(bind=engine)
@@ -23,6 +23,7 @@ app = FastAPI(
 # 5. Conectar los routers a la aplicación principal
 app.include_router(clinic.router)
 app.include_router(patient.router)
+app.include_router(user.router)
 
 # 6. Endpoint de salud (Health Check)
 @app.get("/", tags=["Health"])
