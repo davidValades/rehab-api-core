@@ -36,3 +36,12 @@ def create_clinic(clinic_in: ClinicCreate, db: Session = Depends(get_db)):
     db.refresh(new_clinic)  # Refrescamos para obtener el UUID generado y la fecha
 
     return new_clinic
+
+# Endpoint GET para obtener todas las clínicas
+@router.get("/", response_model=List[ClinicResponse])
+def get_clinics(db: Session = Depends(get_db)):
+    """
+    Obtiene una lista de todas las clínicas registradas en el sistema SaaS.
+    """
+    clinics = db.query(ClinicModel).all()
+    return clinics
