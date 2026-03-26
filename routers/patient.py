@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from schemas.patient import PatientCreate, PatientResponse
 
 # Creamos el "enrutador" y le damos un prefijo para que todas sus URLs empiecen igual
 router = APIRouter(
@@ -7,6 +8,5 @@ router = APIRouter(
 )
 
 @router.post("/")
-def create_patient():
-    
-    return {"mensaje": "Recurso creado"}
+def create_patient(patient: PatientCreate):
+    return {"mensaje": "Paciente validado correctamente", "datos_recibidos": patient}
